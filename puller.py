@@ -1,8 +1,11 @@
 import os
 import glob
-import Tkinter 
+import Tkinter
+import glob2 #need to download and install this.
+from shutil import copy
+
 from tkFileDialog import askdirectory
-top = Tk()
+top = Tkinter.Tk()
 
  
 #Select Capture Folder button chooses input folder
@@ -33,14 +36,15 @@ fileNameEntry.pack()
 
 def goButtonCallback():
 	os.chdir(rawFolder)
-	fileName = fileNameEntry.get() 
-	for f in glob.glob('*' + str(fileName) + '*.*'): #search for files that contain FileName
+	fileName = fileNameEntry.get()
+	#list1 = [raw,cop]
+	for f in glob2.glob(*/**/'*' + str(fileName) + '*.*'): #search for files that contain FileName
 		print (f)
 		print (fileName)
-		i=1
-		if f == fileName + '.psd':
-			i = i+1
-			print (i)
+		copy(f,destFolder) 
+		#if f == fileName + '.iiq':
+			#print (fileName)
+		#else: print ('nothing found')
 		
 		 
 #Go Button
@@ -50,8 +54,5 @@ goButton.pack()
 
 
 top.mainloop()
-
-
-
 
 
